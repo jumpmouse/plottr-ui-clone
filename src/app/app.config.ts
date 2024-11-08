@@ -1,13 +1,13 @@
 import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideStore } from '@ngrx/store';
-import { reducers, metaReducers } from './core/store/reducers';
 import { provideEffects } from '@ngrx/effects';
-import { AppEffects } from './core/store/effects/app.effects';
+
+import { reducers, metaReducers } from '@store/reducers';
+import { AppEffects } from '@store/effects/app.effects';
+import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
