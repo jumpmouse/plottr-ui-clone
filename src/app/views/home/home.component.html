@@ -1,1 +1,17 @@
-<pltr-table-example></pltr-table-example>
+<div class="pltr-home-toolbar">
+  Examples:
+  <mat-button-toggle-group
+    name="exampleSelect"
+    [value]="exampleSelection"
+    [hideSingleSelectionIndicator]="true"
+    (change)="exampleSelection = $event.value"
+  >
+    <mat-button-toggle value="table">Material Table</mat-button-toggle>
+    <mat-button-toggle value="flex">Flex</mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+@if (exampleSelection === 'table') {
+  <pltr-table-example></pltr-table-example>
+} @else {
+  <pltr-flex-example></pltr-flex-example>
+}
