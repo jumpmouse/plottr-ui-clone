@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 
 // TODO: Replace this with your own data model type
 export interface TableExampleItem {
@@ -37,7 +37,7 @@ export const EXAMPLE_DATA: TableExampleItem[] = [
  * (including sorting, pagination, and filtering).
  */
 export class TableExampleDataSource extends DataSource<TableExampleItem> {
-  data!: Observable<TableExampleItem[]>;
+  data: ReplaySubject<TableExampleItem[]> = new ReplaySubject<TableExampleItem[]>(1);
 
   constructor() {
     super();
@@ -49,7 +49,7 @@ export class TableExampleDataSource extends DataSource<TableExampleItem> {
    * @returns A stream of the items to be rendered.
    */
   connect(): Observable<TableExampleItem[]> {
-    return this.data;
+    return this.data.asObservable();
   }
 
   /**
@@ -58,4 +58,8 @@ export class TableExampleDataSource extends DataSource<TableExampleItem> {
    */
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   disconnect(): void {}
+
+  updateData(updatedData: TableExampleItem[]): void {
+    this.data.next(updatedData);
+  }
 }
