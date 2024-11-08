@@ -7,4 +7,8 @@ export const routes: Routes = [
     component: HomeComponent,
     pathMatch: 'full',
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
