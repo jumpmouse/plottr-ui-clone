@@ -4,7 +4,6 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -26,7 +25,7 @@
       "@services/*": ["./src/app/core/services/*"],
       "@sharedComponents/*": ["./src/app/shared/components/*"],
       "@constants/*": ["./src/app/core/constants/*"],
-      "@models": ["./src/app/core/models"]
+      "@models/*": ["./src/app/core/models/*"]
     }
   },
   "angularCompilerOptions": {

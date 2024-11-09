@@ -11,7 +11,7 @@
   </mat-button-toggle-group>
 </div>
 @if (exampleSelection === 'table') {
-  <pltr-table-example></pltr-table-example>
+  <pltr-table-example [data$]="plotlinesData$" [chapters$]="chaptersData$"></pltr-table-example>
 } @else {
   <pltr-flex-example></pltr-flex-example>
 }
