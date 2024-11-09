@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatIcon } from '@angular/material/icon';
 import { Observable, Subscription } from 'rxjs';
@@ -27,10 +35,13 @@ export class TableExampleComponent implements OnInit, OnDestroy {
 
   private subs: Subscription = new Subscription();
 
+  constructor(private cd: ChangeDetectorRef) {}
+
   ngOnInit(): void {
     const chaptersSub = this.chapters$.subscribe((chapters: Chapter[]) => {
       this.chapters = chapters;
       this.displayedColumns = this.setDisplayedColumns(chapters);
+      this.cd.markForCheck();
     });
     this.subs.add(chaptersSub);
     this.dataSource.connectExternalDataSource(this.data$);
