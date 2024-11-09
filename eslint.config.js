@@ -3,6 +3,7 @@ const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const prettier = require('eslint-config-prettier');
+const ngrx = require('@ngrx/eslint-plugin/v9');
 
 module.exports = tseslint.config(
   {
@@ -11,6 +12,9 @@ module.exports = tseslint.config(
       eslint.configs.recommended,
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
+      ...ngrx.configs.store,
+      ...ngrx.configs.effects,
+      ...ngrx.configs.operators,
       ...angular.configs.tsRecommended,
       prettier,
     ],
