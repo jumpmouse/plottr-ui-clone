@@ -5,7 +5,7 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 
-import { reducers, metaReducers } from '@store/reducers';
+import { reducers } from '@store/reducers/app.reducers';
 import { AppEffects } from '@store/effects/app.effects';
 import { routes } from './app.routes';
 
@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    provideStore(reducers, { metaReducers }),
+    provideStore(reducers),
     provideEffects(AppEffects),
   ],
 };
