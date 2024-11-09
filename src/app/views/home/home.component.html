@@ -9,6 +9,35 @@
     <mat-button-toggle value="table">Material Table</mat-button-toggle>
     <mat-button-toggle value="flex">Flex</mat-button-toggle>
   </mat-button-toggle-group>
+  Testing:
+  <button mat-button (click)="addChapter()">Add Chapter</button>
+  <button mat-button (click)="moveChapter('3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c', 0, 5)">Move Chapter</button>
+  <button mat-button (click)="updateChapterName('3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c', 'new chapter name')">
+    Update Chapter Name
+  </button>
+  <button mat-button (click)="addPlotline()">Add Plotline</button>
+  <button mat-button (click)="updatePlotlineName('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'new plotline name')">
+    Update Plotline Name
+  </button>
+  <button
+    mat-button
+    (click)="addScene('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', '3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c', 2)"
+  >
+    Add Scene
+  </button>
+  <button
+    mat-button
+    (click)="
+      updateSceneDescription(
+        '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
+        '3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c',
+        '2',
+        'new scene description'
+      )
+    "
+  >
+    Update Scene Description
+  </button>
 </div>
 @if (exampleSelection === 'table') {
   <pltr-table-example [data$]="plotlinesData$" [chapters$]="chaptersData$"></pltr-table-example>

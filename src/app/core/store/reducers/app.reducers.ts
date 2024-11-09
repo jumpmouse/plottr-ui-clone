@@ -34,11 +34,11 @@ const plotlinesReducer = createReducer(
     const plotline = state.find(plotline => plotline.id === plotlineId);
     if (!plotline || !plotline.scenes[chapterId]) return state;
 
-    const newPlotline = { ...plotline };
+    const newPlotline = { ...plotline, scenes: { ...plotline.scenes } };
     const chapterScenes = [...newPlotline.scenes[chapterId]];
     newPlotline.scenes[chapterId] = chapterScenes
       .slice(0, index)
-      .concat([{ id: uuidv4(), description: '' }])
+      .concat([{ id: uuidv4(), description: 'test' }])
       .concat(chapterScenes.slice(index));
 
     return state.map(p => (p.id === plotlineId ? newPlotline : p));
@@ -51,9 +51,9 @@ const plotlinesReducer = createReducer(
     const scene = plotline.scenes[chapterId].find(scene => scene.id === sceneId);
     if (!scene) return state;
 
-    scene.description = description;
-    const newPlotline = { ...plotline };
-    newPlotline.scenes[chapterId] = plotline.scenes[chapterId].map(s => (s.id === sceneId ? scene : s));
+    const newScene = { ...scene, description };
+    const newPlotline = { ...plotline, scenes: { ...plotline.scenes } };
+    newPlotline.scenes[chapterId] = plotline.scenes[chapterId].map(s => (s.id === sceneId ? newScene : s));
     return state.map(p => (p.id === plotlineId ? newPlotline : p));
   })
 );
