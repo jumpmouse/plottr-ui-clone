@@ -1,6 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Plotline } from '@models/plotline';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, Subscription } from 'rxjs';
 
 /**
  * Data source for the TableExample view. This class should
@@ -8,7 +8,10 @@ import { Observable, ReplaySubject } from 'rxjs';
  * (including sorting, pagination, and filtering).
  */
 export class TableExampleDataSource extends DataSource<Plotline> {
+  // cache last emitted value; no initial data
   data: ReplaySubject<Plotline[]> = new ReplaySubject<Plotline[]>(1);
+
+  private externalDataSource: Subscription;
 
   constructor() {
     super();
@@ -30,7 +33,8 @@ export class TableExampleDataSource extends DataSource<Plotline> {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   disconnect(): void {}
 
-  updateData(updatedData: Plotline[]): void {
-    this.data.next(updatedData);
+  connectExternalDataSource(dataSource: Observable<Plotline[]>): void {
+    if (this.externalDataSource) this.externalDataSource.unsubscribe();
+    this.externalDataSource = dataSource.subscribe((updatedData: Plotline[]) => this.data.next(updatedData));
   }
 }
