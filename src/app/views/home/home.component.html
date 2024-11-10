@@ -40,7 +40,19 @@
   </button>
 </div>
 @if (exampleSelection === 'table') {
-  <pltr-table-example [data$]="plotlinesData$" [chapters$]="chaptersData$"></pltr-table-example>
+  <pltr-table-example
+    [data$]="plotlinesData$"
+    [chapters$]="chaptersData$"
+    (addChapterEvent)="addChapter()"
+    (moveChapterEvent)="moveChapter($event.id, $event.oldIndex, $event.newIndex)"
+    (updateChapterNameEvent)="updateChapterName($event.id, $event.name)"
+    (addPlotlineEvent)="addPlotline()"
+    (updatePlotlineNameEvent)="updatePlotlineName($event.id, $event.name)"
+    (addSceneEvent)="addScene($event.plotlineId, $event.chapterId, $event.index)"
+    (updateSceneDescriptionEvent)="
+      updateSceneDescription($event.plotlineId, $event.chapterId, $event.sceneId, $event.description)
+    "
+  ></pltr-table-example>
 } @else {
   <pltr-flex-example></pltr-flex-example>
 }

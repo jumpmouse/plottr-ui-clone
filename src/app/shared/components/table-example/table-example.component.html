@@ -1,7 +1,7 @@
 <div class="mat-elevation-z2">
   <mat-table class="full-width-table" [dataSource]="dataSource">
     <!-- Plotline Name Column -->
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="plotline-name" sticky>
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
     </ng-container>
@@ -50,7 +50,7 @@
       <mat-cell *matCellDef="let row"></mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 </div>

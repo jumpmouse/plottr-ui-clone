@@ -1,3 +1,13 @@
 .full-width-table {
   width: auto;
 }
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  min-width: 180px;
+  max-width: 180px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+}
