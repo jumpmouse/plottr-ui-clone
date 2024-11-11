@@ -32,7 +32,7 @@ export const ChaptersActions = createActionGroup({
     'Load Chapters Success': props<{ chapters: Chapter[] }>(),
     'Load Chapters Error': props<{ error: unknown }>(),
     'Add Chapter': emptyProps(),
-    'Move Chapter': props<{ chapterId: string; oldIndex: number; newIndex: number }>(),
+    'Move Chapter': props<{ oldIndex: number; newIndex: number }>(),
     'Update Chapter Name': props<{ chapterId: string; chapterName: string }>(),
   },
 });

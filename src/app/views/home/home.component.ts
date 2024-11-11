@@ -36,8 +36,8 @@ export class HomeComponent implements OnInit {
     this.store.dispatch(ChaptersActions.addChapter());
   }
 
-  moveChapter(chapterId: string, oldIndex: number, newIndex: number): void {
-    this.store.dispatch(ChaptersActions.moveChapter({ chapterId, oldIndex, newIndex }));
+  moveChapter(oldIndex: number, newIndex: number): void {
+    this.store.dispatch(ChaptersActions.moveChapter({ oldIndex, newIndex }));
   }
 
   updateChapterName(chapterId: string, chapterName: string): void {

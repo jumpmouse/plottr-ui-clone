@@ -11,7 +11,7 @@
   </mat-button-toggle-group>
   Testing:
   <button mat-button (click)="addChapter()">Add Chapter</button>
-  <button mat-button (click)="moveChapter('3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c', 0, 5)">Move Chapter</button>
+  <button mat-button (click)="moveChapter(0, 5)">Move Chapter</button>
   <button mat-button (click)="updateChapterName('3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c', 'new chapter name')">
     Update Chapter Name
   </button>
@@ -44,7 +44,7 @@
     [data$]="plotlinesData$"
     [chapters$]="chaptersData$"
     (addChapterEvent)="addChapter()"
-    (moveChapterEvent)="moveChapter($event.id, $event.oldIndex, $event.newIndex)"
+    (moveChapterEvent)="moveChapter($event.oldIndex, $event.newIndex)"
     (updateChapterNameEvent)="updateChapterName($event.id, $event.name)"
     (addPlotlineEvent)="addPlotline()"
     (updatePlotlineNameEvent)="updatePlotlineName($event.id, $event.name)"
