@@ -68,13 +68,6 @@ export class TableExampleComponent implements OnInit, OnDestroy {
     this.subs.unsubscribe();
   }
 
-  private setDisplayedColumns(chapters: Chapter[]): string[] {
-    const displayedColumns: string[] = ['name'];
-    chapters.forEach((chapter: Chapter) => displayedColumns.push(chapter.id));
-    displayedColumns.push('add-chapter');
-    return displayedColumns;
-  }
-
   addChapter() {
     this.addChapterEvent.emit();
   }
@@ -101,5 +94,12 @@ export class TableExampleComponent implements OnInit, OnDestroy {
 
   updateSceneDescription(plotlineId: string, chapterId: string, sceneId: string, description: string) {
     this.updateSceneDescriptionEvent.emit({ plotlineId, chapterId, sceneId, description });
+  }
+
+  private setDisplayedColumns(chapters: Chapter[]): string[] {
+    const displayedColumns: string[] = ['plotline-name'];
+    chapters.forEach((chapter: Chapter) => displayedColumns.push(chapter.id));
+    displayedColumns.push('add-chapter');
+    return displayedColumns;
   }
 }

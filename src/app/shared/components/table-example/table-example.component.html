@@ -1,9 +1,12 @@
 <div class="mat-elevation-z2">
-  <mat-table class="full-width-table" [dataSource]="dataSource">
+  <mat-table class="pltr-table" [dataSource]="dataSource">
     <!-- Plotline Name Column -->
     <ng-container matColumnDef="plotline-name" sticky>
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+      <mat-cell *matCellDef="let row; let i = index" [class]="'pltr-template-' + i">
+        <div class="pltr-plotline-name-cell-line"></div>
+        <div class="pltr-plotline-name-cell">{{ row.name }}</div>
+      </mat-cell>
     </ng-container>
 
     <!-- Chapter Columns -->
@@ -13,21 +16,24 @@
           <div class="pltr-table-header-cell">
             {{ chapter.name }}
             <div class="pltr-table-scene-actions">
-              <mat-icon>edit</mat-icon>
+              <!-- <mat-icon>edit</mat-icon> -->
             </div>
           </div>
         </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <mat-cell *matCellDef="let row; let i = index" [class]="'pltr-template-' + i">
+          <div class="pltr-table-cell-line"></div>
           @if (!row.scenes[chapter.id]?.length) {
-            <div class="pltr-table-empty-cell"></div>
+            <div class="pltr-table-empty-cell">
+              <!-- <mat-icon>add</mat-icon> -->
+            </div>
           } @else {
             <div class="pltr-table-cell">
               @for (scene of row.scenes[chapter.id]; track scene.id) {
                 <div class="pltr-table-scene">
                   {{ scene.description }}
                   <div class="pltr-table-scene-actions">
-                    <mat-icon>edit</mat-icon>
-                    <mat-icon>delete</mat-icon>
+                    <!-- <mat-icon>edit</mat-icon> -->
+                    <!-- <mat-icon>delete</mat-icon> -->
                   </div>
                 </div>
                 <div class="pltr-table-scene-add">

@@ -1,13 +1,172 @@
-.full-width-table {
+.pltr-table {
   width: auto;
+  background-color: white;
+}
+
+.mat-mdc-header-row, .mat-mdc-row {
+  margin-bottom: 20px;
 }
 
 .mat-mdc-cell,
 .mat-mdc-header-cell {
+  position: relative;
   min-width: 180px;
   max-width: 180px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: flex-start;
   padding: 0;
   box-sizing: border-box;
+  border: none;
+}
+
+.mat-mdc-header-cell {
+  justify-content: center;
+}
+
+.pltr-table-header-cell {
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.4em;
+}
+
+.pltr-table-cell {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 1;
+  background-color: white;
+  border-color: inherit;
+}
+
+.mat-column-plotline-name {
+  // override of Material style, applied in template
+  z-index: 2 !important;
+}
+
+.pltr-plotline-name-cell {
+  border-right: 1px solid gray;
+  width: 70%;
+  padding: 20px;
+  text-align: center;
+  min-height: 60px;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 0;
+}
+
+.pltr-plotline-name-cell-line,
+.pltr-table-cell-line {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-bottom: 3px solid;
+  border-color: inherit;
+  z-index: 0;
+}
+
+.pltr-plotline-name-cell-line {
+  left: 50%;
+}
+
+.pltr-table-scene {
+  width: 100%;
+  border: 3px solid;
+  border-color: inherit;
+  border-radius: 4px;
+  min-height: 60px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.pltr-table-scene-add {
+  width: 100%;
+  text-align: center;
+}
+
+
+.pltr-template-0 {
+  border-color: green;
+}
+
+.pltr-template-1,
+.pltr-template-16 {
+  border-color: red;
+}
+
+.pltr-template-2,
+.pltr-template-17 {
+  border-color: blue;
+}
+
+.pltr-template-3,
+.pltr-template-18 {
+  border-color: lightgray;
+}
+
+.pltr-template-4,
+.pltr-template-19 {
+  border-color: orange;
+}
+
+.pltr-template-5,
+.pltr-template-20 {
+  border-color: purple;
+}
+
+.pltr-template-6,
+.pltr-template-21 {
+  border-color: pink;
+}
+
+.pltr-template-7,
+.pltr-template-22 {
+  border-color: brown;
+}
+
+.pltr-template-8,
+.pltr-template-23 {
+  border-color: gray;
+}
+
+.pltr-template-9,
+.pltr-template-24 {
+  border-color: black;
+}
+
+.pltr-template-10,
+.pltr-template-25 {
+  border-color: yellow;
+}
+
+.pltr-template-11,
+.pltr-template-26 {
+  border-color: darkgray;
+}
+
+.pltr-template-12,
+.pltr-template-27 {
+  border-color: lightblue;
+}
+
+.pltr-template-13,
+.pltr-template-28 {
+  border-color: darkblue;
+}
+
+.pltr-template-14,
+.pltr-template-29 {
+  border-color: lightgreen;
+}
+
+.pltr-template-15,
+.pltr-template-30 {
+  border-color: darkgreen;
 }
