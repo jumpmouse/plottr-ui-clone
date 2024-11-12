@@ -32,13 +32,15 @@ const plotlinesReducer = createReducer(
 
   on(PlotlinesActions.addScene, (state, { plotlineId, chapterId, index }): Plotline[] => {
     const plotline = state.find(plotline => plotline.id === plotlineId);
-    if (!plotline || !plotline.scenes[chapterId]) return state;
+    if (!plotline) return state;
 
     const newPlotline = { ...plotline, scenes: { ...plotline.scenes } };
+    if (!newPlotline.scenes[chapterId]) newPlotline.scenes[chapterId] = [];
+
     const chapterScenes = [...newPlotline.scenes[chapterId]];
     newPlotline.scenes[chapterId] = chapterScenes
       .slice(0, index)
-      .concat([{ id: uuidv4(), description: 'test' }])
+      .concat([{ id: uuidv4(), description: 'new scene' }])
       .concat(chapterScenes.slice(index));
 
     return state.map(p => (p.id === plotlineId ? newPlotline : p));

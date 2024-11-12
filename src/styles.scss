@@ -7,3 +7,23 @@ body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.scrollbar-thin {
+  // For Chrome & Safari
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #999;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #333;
+  }
+
+  // Standard version (Firefox only for now)
+  scrollbar-color: #999 #333;
+  scrollbar-width: thin;
+}

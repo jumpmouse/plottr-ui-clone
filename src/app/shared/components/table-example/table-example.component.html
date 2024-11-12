@@ -1,42 +1,124 @@
 <div class="mat-elevation-z2">
-  <mat-table class="full-width-table" [dataSource]="dataSource">
+  <mat-table
+    class="pltr-table"
+    [dataSource]="dataSource"
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="moveChapter($event)"
+  >
     <!-- Plotline Name Column -->
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="plotline-name" sticky>
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.name }}</mat-cell>
+      <mat-cell *matCellDef="let row; let i = index" [class]="'pltr-template-' + i">
+        <div class="pltr-plotline-name-cell-line"></div>
+        @if (activePlotlineIndex === i) {
+          <div class="pltr-plotline-name-cell">
+            <textarea
+              matInput
+              class="plotline-name-input scrollbar-thin"
+              type="text"
+              [value]="row.name"
+              (blur)="updatePlotlineName(row.id, $event.target['value']); activePlotlineIndex = null"
+            >
+            </textarea>
+          </div>
+        } @else {
+          <div
+            class="pltr-plotline-name-cell"
+            (click)="activePlotlineIndex = i"
+            (keyup.enter)="activePlotlineIndex = i"
+            tabindex="0"
+          >
+            {{ row.name }}
+          </div>
+        }
+      </mat-cell>
+      <mat-footer-cell *matFooterCellDef>
+        <div class="pltr-plotline-add" (click)="addPlotline()" (keyup.enter)="addPlotline()" tabindex="0">
+          <mat-icon>add</mat-icon>
+        </div>
+      </mat-footer-cell>
     </ng-container>
 
     <!-- Chapter Columns -->
     @for (chapter of chapters; track chapter.id; let index = $index, count = $count) {
       <ng-container [matColumnDef]="chapter.id">
-        <mat-header-cell *matHeaderCellDef>
-          <div class="pltr-table-header-cell">
-            {{ chapter.name }}
-            <div class="pltr-table-scene-actions">
-              <mat-icon>edit</mat-icon>
+        <mat-header-cell *matHeaderCellDef cdkDrag>
+          @if (activeChapterIndex === index) {
+            <div class="pltr-table-header-cell">
+              <textarea
+                matInput
+                class="chapter-name-input scrollbar-thin"
+                type="text"
+                [value]="chapter.name"
+                (blur)="updateChapterName(chapter.id, $event.target['value']); activeChapterIndex = null"
+              >
+              </textarea>
             </div>
-          </div>
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">
-          @if (!row.scenes[chapter.id]?.length) {
-            <div class="pltr-table-empty-cell"></div>
           } @else {
-            <div class="pltr-table-cell">
-              @for (scene of row.scenes[chapter.id]; track scene.id) {
-                <div class="pltr-table-scene">
-                  {{ scene.description }}
-                  <div class="pltr-table-scene-actions">
-                    <mat-icon>edit</mat-icon>
-                    <mat-icon>delete</mat-icon>
+            <div
+              class="pltr-table-header-cell"
+              (click)="activeChapterIndex = index"
+              (keyup.enter)="activeChapterIndex = index"
+              tabindex="0"
+            >
+              {{ chapter.name }}
+            </div>
+          }
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row; let i = index" [class]="'pltr-template-' + i">
+          <div class="pltr-table-cell-line"></div>
+          @if (!row.scenes[chapter.id]?.length) {
+            <div class="pltr-table-empty-cell">
+              <div
+                class="pltr-table-scene-add"
+                (click)="addScene(row.id, chapter.id, 0)"
+                (keyup.enter)="addScene(row.id, chapter.id, 0)"
+                tabindex
+              >
+                <mat-icon>add</mat-icon>
+              </div>
+            </div>
+          } @else {
+            <div class="pltr-table-cell pltr-table-scene-cell">
+              @for (scene of row.scenes[chapter.id]; track scene.id; let sceneIndex = $index) {
+                @if (activeSceneId === row.id + chapter.id + scene.id) {
+                  <div class="pltr-table-scene">
+                    <textarea
+                      matInput
+                      class="scene-name-input scrollbar-thin"
+                      type="text"
+                      [value]="scene.description"
+                      (blur)="
+                        updateSceneDescription(row.id, chapter.id, scene.id, $event.target['value']);
+                        activeSceneId = null
+                      "
+                    >
+                    </textarea>
                   </div>
-                </div>
-                <div class="pltr-table-scene-add">
+                } @else {
+                  <div
+                    class="pltr-table-scene"
+                    (click)="activeSceneId = row.id + chapter.id + scene.id"
+                    (keyup.enter)="activeSceneId = row.id + chapter.id + scene.id"
+                    tabindex="0"
+                  >
+                    {{ scene.description }}
+                  </div>
+                }
+                <div
+                  class="pltr-table-scene-add"
+                  (click)="addScene(row.id, chapter.id, sceneIndex + 1)"
+                  (keyup.enter)="addScene(row.id, chapter.id, sceneIndex + 1)"
+                  tabindex
+                >
                   <mat-icon>add</mat-icon>
                 </div>
               }
             </div>
           }
         </mat-cell>
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
       </ng-container>
     }
 
@@ -44,13 +126,17 @@
     <ng-container matColumnDef="add-chapter">
       <mat-header-cell *matHeaderCellDef>
         <div class="pltr-table-header-cell">
-          <mat-icon>add</mat-icon>
+          <div (click)="addChapter()" (keyup.enter)="addChapter()" tabindex="0"><mat-icon>add</mat-icon></div>
         </div>
       </mat-header-cell>
-      <mat-cell *matCellDef="let row"></mat-cell>
+      <mat-cell *matCellDef="let row; let i = index" [class]="'pltr-template-' + i"
+        ><div class="pltr-table-cell-line"></div
+      ></mat-cell>
+      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns"></mat-footer-row>
   </mat-table>
 </div>
