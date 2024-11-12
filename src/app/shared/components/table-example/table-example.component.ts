@@ -53,6 +53,7 @@ export class TableExampleComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = [];
   activeChapterIndex: number | null = null;
   activePlotlineIndex: number | null = null;
+  activeSceneId: string | null = null;
 
   private subs: Subscription = new Subscription();
 

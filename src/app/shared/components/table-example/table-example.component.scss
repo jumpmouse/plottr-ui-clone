@@ -43,7 +43,8 @@
 }
 
 .chapter-name-input,
-.plotline-name-input {
+.plotline-name-input,
+.scene-name-input {
   font: inherit;
   display: block;
   height: 100%;
@@ -57,6 +58,9 @@
   resize: none;
 }
 
+.scene-name-input {
+  text-align: start;
+}
 
 .pltr-table-cell {
   width: 140px;

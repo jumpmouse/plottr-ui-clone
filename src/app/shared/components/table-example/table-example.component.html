@@ -15,7 +15,7 @@
           <div class="pltr-plotline-name-cell">
             <textarea
               matInput
-              class="plotline-name-input"
+              class="plotline-name-input scrollbar-thin"
               type="text"
               [value]="row.name"
               (blur)="updatePlotlineName(row.id, $event.target['value']); activePlotlineIndex = null"
@@ -43,7 +43,7 @@
             <div class="pltr-table-header-cell">
               <textarea
                 matInput
-                class="chapter-name-input"
+                class="chapter-name-input scrollbar-thin"
                 type="text"
                 [value]="chapter.name"
                 (blur)="updateChapterName(chapter.id, $event.target['value']); activeChapterIndex = null"
@@ -77,9 +77,30 @@
           } @else {
             <div class="pltr-table-cell pltr-table-scene-cell">
               @for (scene of row.scenes[chapter.id]; track scene.id; let sceneIndex = $index) {
-                <div class="pltr-table-scene">
-                  {{ scene.description }}
-                </div>
+                @if (activeSceneId === row.id + chapter.id + scene.id) {
+                  <div class="pltr-table-scene">
+                    <textarea
+                      matInput
+                      class="scene-name-input scrollbar-thin"
+                      type="text"
+                      [value]="scene.description"
+                      (blur)="
+                        updateSceneDescription(row.id, chapter.id, scene.id, $event.target['value']);
+                        activeSceneId = null
+                      "
+                    >
+                    </textarea>
+                  </div>
+                } @else {
+                  <div
+                    class="pltr-table-scene"
+                    (click)="activeSceneId = row.id + chapter.id + scene.id"
+                    (keyup.enter)="activeSceneId = row.id + chapter.id + scene.id"
+                    tabindex="0"
+                  >
+                    {{ scene.description }}
+                  </div>
+                }
                 <div
                   class="pltr-table-scene-add"
                   (click)="addScene(row.id, chapter.id, sceneIndex + 1)"
