@@ -1,14 +1,20 @@
 .pltr-table {
   width: auto;
   background-color: white;
+  padding-bottom: 20px;
 }
 
-.mat-mdc-header-row, .mat-mdc-row {
+.mat-mdc-header-row {
   margin-bottom: 20px;
 }
 
+.mat-mdc-footer-row {
+  min-height: 66px;
+}
+
 .mat-mdc-cell,
-.mat-mdc-header-cell {
+.mat-mdc-header-cell,
+.mat-mdc-footer-cell {
   position: relative;
   min-width: 180px;
   max-width: 180px;
@@ -22,6 +28,12 @@
 
 .mat-mdc-header-cell {
   justify-content: center;
+}
+
+.mat-mdc-footer-cell {
+  justify-content: center;
+  padding: 3px;
+  height: 100%;
 }
 
 .pltr-table-header-cell {
@@ -89,6 +101,24 @@
   box-sizing: border-box;
   background-color: white;
   z-index: 0;
+}
+
+.pltr-plotline-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  text-align: center;
+  min-height: 66px;
+  box-sizing: border-box;
+  background-color: white;
+  z-index: 0;
+  border: 3px dashed transparent;
+  cursor: pointer;
+
+  &:hover {
+    border-color: lightblue;
+  }
 }
 
 .pltr-plotline-name-cell-line,
