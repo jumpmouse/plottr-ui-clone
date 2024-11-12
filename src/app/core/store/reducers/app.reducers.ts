@@ -40,7 +40,7 @@ const plotlinesReducer = createReducer(
     const chapterScenes = [...newPlotline.scenes[chapterId]];
     newPlotline.scenes[chapterId] = chapterScenes
       .slice(0, index)
-      .concat([{ id: uuidv4(), description: 'test' }])
+      .concat([{ id: uuidv4(), description: 'new scene' }])
       .concat(chapterScenes.slice(index));
 
     return state.map(p => (p.id === plotlineId ? newPlotline : p));
