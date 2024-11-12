@@ -69,7 +69,7 @@
 }
 
 .mat-column-plotline-name {
-  // override of Material style, applied in in HTML style attribute
+  // override of dynamic Material style, applied in HTML style attribute
   z-index: 2 !important;
 }
 
@@ -91,7 +91,7 @@
   left: 0;
   width: 100%;
   height: 0;
-  border-bottom: 3px solid;
+  border-top: 3px solid;
   border-color: inherit;
   z-index: 0;
 }
@@ -148,6 +148,22 @@
   }
 }
 
+.pltr-table-scene-cell {
+  cursor: text;
+
+  .pltr-table-scene-add {
+    visibility: hidden;
+    cursor: pointer;
+    padding: 2px 0;
+  }
+
+  &:hover {
+    .pltr-table-scene-add {
+      visibility: visible;
+    }
+  }
+}
+
 .cdk-drag-preview {
   border: 3px dashed lightblue;
 }
@@ -168,12 +184,12 @@
 
 .pltr-template-3,
 .pltr-template-18 {
-  border-color: lightgray;
+  border-color: orange;
 }
 
 .pltr-template-4,
 .pltr-template-19 {
-  border-color: orange;
+  border-color: black;
 }
 
 .pltr-template-5,
@@ -198,7 +214,7 @@
 
 .pltr-template-9,
 .pltr-template-24 {
-  border-color: black;
+  border-color: lightgray;
 }
 
 .pltr-template-10,
