@@ -10,8 +10,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatTableModule, MatTable } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { Observable, Subscription } from 'rxjs';
+import { CdkDragDrop, CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
 
 import { TableExampleDataSource } from './table-example-datasource';
 import {
@@ -29,7 +31,7 @@ import { Chapter } from '@models/chapter';
   templateUrl: './table-example.component.html',
   styleUrl: './table-example.component.scss',
   standalone: true,
-  imports: [MatTableModule, MatIcon],
+  imports: [MatTableModule, MatIcon, CdkDropList, CdkDrag, MatInputModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableExampleComponent implements OnInit, OnDestroy {
@@ -49,6 +51,7 @@ export class TableExampleComponent implements OnInit, OnDestroy {
   dataSource: TableExampleDataSource = new TableExampleDataSource();
   chapters: Chapter[] = [];
   displayedColumns: string[] = [];
+  activeChapterIndex: number | null = null;
 
   private subs: Subscription = new Subscription();
 
@@ -72,8 +75,9 @@ export class TableExampleComponent implements OnInit, OnDestroy {
     this.addChapterEvent.emit();
   }
 
-  moveChapter(id: string, oldIndex: number, newIndex: number) {
-    this.moveChapterEvent.emit({ id, oldIndex, newIndex });
+  moveChapter(dropEvent: CdkDragDrop<Chapter[]>) {
+    const { previousIndex: oldIndex, currentIndex: newIndex } = dropEvent;
+    this.moveChapterEvent.emit({ oldIndex, newIndex });
   }
 
   updateChapterName(id: string, name: string) {

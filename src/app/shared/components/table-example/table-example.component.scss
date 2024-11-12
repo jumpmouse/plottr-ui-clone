@@ -25,13 +25,37 @@
 }
 
 .pltr-table-header-cell {
+  position: relative;
+  width: 140px;
   min-height: 80px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: center;
   font-size: 1.4em;
+  border: 3px dashed transparent;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: lightblue;
+  }
 }
+
+.chapter-name-input {
+  font: inherit;
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: lightgray;
+  box-sizing: border-box;
+  font-size: inherit;
+  text-align: center;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
 
 .pltr-table-cell {
   width: 140px;
@@ -45,7 +69,7 @@
 }
 
 .mat-column-plotline-name {
-  // override of Material style, applied in template
+  // override of Material style, applied in in HTML style attribute
   z-index: 2 !important;
 }
 
@@ -91,6 +115,42 @@
   text-align: center;
 }
 
+.pltr-table-empty-cell {
+  width: 140px;
+  height: 60px;
+  display: block;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-color: inherit;
+  z-index: 1;
+  box-sizing: border-box;
+
+  .pltr-table-scene-add {
+    visibility: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:hover {
+    background-color: white;
+    border: 3px dashed;
+    border-color: inherit;
+    border-radius: 4px;
+    cursor: pointer;
+
+    .pltr-table-scene-add {
+      visibility: visible;
+    }
+  }
+}
+
+.cdk-drag-preview {
+  border: 3px dashed lightblue;
+}
 
 .pltr-template-0 {
   border-color: green;
