@@ -11,7 +11,27 @@
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let row; let i = index" [class]="'pltr-template-' + i">
         <div class="pltr-plotline-name-cell-line"></div>
-        <div class="pltr-plotline-name-cell">{{ row.name }}</div>
+        @if (activePlotlineIndex === i) {
+          <div class="pltr-plotline-name-cell">
+            <textarea
+              matInput
+              class="plotline-name-input"
+              type="text"
+              [value]="row.name"
+              (blur)="updatePlotlineName(row.id, $event.target['value']); activePlotlineIndex = null"
+            >
+            </textarea>
+          </div>
+        } @else {
+          <div
+            class="pltr-plotline-name-cell"
+            (click)="activePlotlineIndex = i"
+            (keyup.enter)="activePlotlineIndex = i"
+            tabindex="0"
+          >
+            {{ row.name }}
+          </div>
+        }
       </mat-cell>
     </ng-container>
 
@@ -40,7 +60,6 @@
               {{ chapter.name }}
             </div>
           }
-          <!-- } -->
         </mat-header-cell>
         <mat-cell *matCellDef="let row; let i = index" [class]="'pltr-template-' + i">
           <div class="pltr-table-cell-line"></div>

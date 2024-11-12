@@ -52,6 +52,7 @@ export class TableExampleComponent implements OnInit, OnDestroy {
   chapters: Chapter[] = [];
   displayedColumns: string[] = [];
   activeChapterIndex: number | null = null;
+  activePlotlineIndex: number | null = null;
 
   private subs: Subscription = new Subscription();
 
