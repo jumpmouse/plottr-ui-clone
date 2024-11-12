@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle';
 import { MatButton } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { FlexExampleComponent } from '@sharedComponents/flex-example/flex-example.component';
 import { TableExampleComponent } from '@sharedComponents/table-example/table-example.component';
 import { Chapter } from '@models/chapter';
 import { Plotline } from '@models/plotline';
@@ -14,13 +12,12 @@ import { selectAllChapters, selectAllPlotlines } from '@store/reducers/app.reduc
 @Component({
   selector: 'pltr-home',
   standalone: true,
-  imports: [TableExampleComponent, FlexExampleComponent, MatButton, MatButtonToggle, MatButtonToggleGroup],
+  imports: [TableExampleComponent, MatButton],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  exampleSelection: 'table' | 'flex' = 'table';
   plotlinesData$!: Observable<Plotline[]>;
   chaptersData$!: Observable<Chapter[]>;
 

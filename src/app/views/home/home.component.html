@@ -1,58 +1,13 @@
-<div class="pltr-home-toolbar">
-  Examples:
-  <mat-button-toggle-group
-    name="exampleSelect"
-    [value]="exampleSelection"
-    [hideSingleSelectionIndicator]="true"
-    (change)="exampleSelection = $event.value"
-  >
-    <mat-button-toggle value="table">Material Table</mat-button-toggle>
-    <mat-button-toggle value="flex">Flex</mat-button-toggle>
-  </mat-button-toggle-group>
-  Testing:
-  <button mat-button (click)="addChapter()">Add Chapter</button>
-  <button mat-button (click)="moveChapter(0, 5)">Move Chapter</button>
-  <button mat-button (click)="updateChapterName('3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c', 'new chapter name')">
-    Update Chapter Name
-  </button>
-  <button mat-button (click)="addPlotline()">Add Plotline</button>
-  <button mat-button (click)="updatePlotlineName('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', 'new plotline name')">
-    Update Plotline Name
-  </button>
-  <button
-    mat-button
-    (click)="addScene('1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed', '3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c', 2)"
-  >
-    Add Scene
-  </button>
-  <button
-    mat-button
-    (click)="
-      updateSceneDescription(
-        '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed',
-        '3f6d5a4c-9e8b-4d7f-8c2a-1b3e5d7f9a0c',
-        '2',
-        'new scene description'
-      )
-    "
-  >
-    Update Scene Description
-  </button>
-</div>
-@if (exampleSelection === 'table') {
-  <pltr-table-example
-    [data$]="plotlinesData$"
-    [chapters$]="chaptersData$"
-    (addChapterEvent)="addChapter()"
-    (moveChapterEvent)="moveChapter($event.oldIndex, $event.newIndex)"
-    (updateChapterNameEvent)="updateChapterName($event.id, $event.name)"
-    (addPlotlineEvent)="addPlotline()"
-    (updatePlotlineNameEvent)="updatePlotlineName($event.id, $event.name)"
-    (addSceneEvent)="addScene($event.plotlineId, $event.chapterId, $event.index)"
-    (updateSceneDescriptionEvent)="
-      updateSceneDescription($event.plotlineId, $event.chapterId, $event.sceneId, $event.description)
-    "
-  ></pltr-table-example>
-} @else {
-  <pltr-flex-example></pltr-flex-example>
-}
+<pltr-table-example
+  [data$]="plotlinesData$"
+  [chapters$]="chaptersData$"
+  (addChapterEvent)="addChapter()"
+  (moveChapterEvent)="moveChapter($event.oldIndex, $event.newIndex)"
+  (updateChapterNameEvent)="updateChapterName($event.id, $event.name)"
+  (addPlotlineEvent)="addPlotline()"
+  (updatePlotlineNameEvent)="updatePlotlineName($event.id, $event.name)"
+  (addSceneEvent)="addScene($event.plotlineId, $event.chapterId, $event.index)"
+  (updateSceneDescriptionEvent)="
+    updateSceneDescription($event.plotlineId, $event.chapterId, $event.sceneId, $event.description)
+  "
+></pltr-table-example>
